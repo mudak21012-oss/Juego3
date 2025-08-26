@@ -95,20 +95,20 @@ export default class DungeonScene extends Phaser.Scene {
       
       return false;
     } else {
-      // El slime golpea al jugador - PERDER 10 puntos Y MEDIA VIDA
+      // El slime golpea al jugador - PERDER 20 puntos Y VIDA
       this.player!.stagger();
       
       const hudScene = this.scene.get("HUDScene") as any;
       if (hudScene) {
-        // Quitar 10 puntos por recibir daño (menos penalización)
+        // Quitar 20 puntos por recibir daño
         if (hudScene.addScore) {
-          hudScene.addScore(-10);
+          hudScene.addScore(-20);
         }
         
-        // Quitar 10 puntos de vida por recibir daño (medio corazón)
+        // Quitar 20 puntos de vida por recibir daño
         if (hudScene.damagePlayer) {
-          hudScene.damagePlayer(10);
-          console.log(`[DungeonScene] 💥 Jugador golpeado por slime - ¡Medio corazón perdido! (10 HP y 10 puntos)`);
+          hudScene.damagePlayer(20);
+          console.log(`[DungeonScene] 💥 Jugador golpeado por slime - ¡20 puntos de vida y score perdidos!`);
           
           // Verificar si el jugador murió
           if (hudScene.currentHealth <= 0) {
